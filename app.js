@@ -24,9 +24,9 @@ const reviewsRoutes = require('./routes/reviews');
 
 const MongoStore = require('connect-mongo'); // This will store the session in the database
 
-const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
 
-//process.env.DB_URL;  
+  
 
 mongoose.connect(dbUrl); 
 
@@ -49,11 +49,13 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
+const secret = process.env.SECRET || 'thisisasecret!';
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisisasecret!'
+        secret,
     }
 });
 
@@ -64,7 +66,7 @@ store.on('error', function (e) {
 const sessionConfig = { 
     store,
     name: 'session',
-    secret: 'thisisasecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -172,7 +174,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).redirect('/campgrounds');
 });
 
+const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port} `);
 });
