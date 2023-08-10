@@ -1,7 +1,7 @@
 body {
 
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/bg-images/daan-weijers-pSaEMIiUO84-unsplash.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/bg-images/daan-weijers-pSaEMIiUO84-unsplash.jpg");
     background-size: cover;
     background-position: center;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
@@ -9,7 +9,7 @@ body {
 }
 
 .cover-container {
-  max-width: 60vw;
+    max-width: 60vw;
 }
 
 
@@ -21,17 +21,32 @@ body {
     margin-left: 2rem;
     border-bottom: 0.15rem solid transparent;
 }
+
 .nav-link:hover {
     color: white;
     border-bottom-color: white;
-}   
+}
 
 .nav-link.active {
     color: white;
     border-bottom-color: white;
 }
 
-.btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
     color: black;
     text-shadow: none;
+}
+
+@media (max-width:767px) {
+    .phonefix {
+        margin-right: 30px;
+    }
+}
+
+@media (min-width: 810px) {
+    .phonefix {
+        margin-right: 40px;
+    }
 }
